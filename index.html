@@ -15,6 +15,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+    :focus-visible { outline: 2px solid var(--amethyst); outline-offset: 2px; border-radius: 4px; }
 
     :root {
       --bg:       #080808;
@@ -28,6 +29,7 @@
       --teal:     #2DD4BF;
       --mauve:    #C8A4C0;
       --green:    #4ADE80;
+      --red:      var(--red);
     }
 
     body {
@@ -62,7 +64,8 @@
 
     /* ── Welcome ── */
     .welcome {
-      border-left: 3px solid var(--amethyst);
+      background: rgba(167,139,250,.06);
+      border-radius: 10px;
       padding: 12px 16px; margin-bottom: 24px;
       font-size: .84rem; color: var(--soft); line-height: 1.65;
     }
@@ -159,7 +162,8 @@
       font-weight: 600; cursor: pointer; padding: 0 0 10px; letter-spacing: .3px;
     }
     .tip-box {
-      border-left: 2px solid var(--amethyst);
+      background: rgba(167,139,250,.08);
+      border-radius: 6px;
       padding: 8px 12px; font-size: .78rem; color: var(--soft);
       margin-bottom: 12px; display: none; line-height: 1.65;
     }
@@ -183,7 +187,7 @@
     .weight-input:focus { border-color: var(--amethyst); }
     .weight-input:disabled { color: var(--muted); }
     .weight-input::placeholder { color: var(--muted); }
-    .weight-input.shake { animation: shake .4s ease; border-color: #F87171 !important; }
+    .weight-input.shake { animation: shake .4s ease; border-color: var(--red) !important; }
     @keyframes shake {
       0%,100% { transform:translateX(0); }
       20%     { transform:translateX(-5px); }
@@ -207,11 +211,12 @@
     }
 
     .set-btn {
-      width: 100%; padding: 10px 0;
+      width: 100%; padding: 13px 0;
       border-radius: 7px; border: 1px solid var(--border);
       background: var(--card2); color: var(--muted);
       font-family: 'Nunito', sans-serif; font-size: .74rem; font-weight: 800;
-      cursor: pointer; letter-spacing: .3px; transition: all .18s;
+      cursor: pointer; letter-spacing: .3px;
+      transition: background .18s, border-color .18s, color .18s, transform .18s;
     }
     .set-btn.done { background: rgba(74,222,128,.08); border-color: rgba(74,222,128,.4); color: var(--green); }
     .set-btn:active { transform: scale(.94); }
@@ -351,7 +356,7 @@
     .prog-pill.empty { color:var(--muted); border-color:var(--border); background:transparent; }
     .prog-delta { font-size:.68rem; font-weight:800; min-width:30px; text-align:right; }
     .prog-delta.up   { color:var(--green); }
-    .prog-delta.down { color:#F87171; }
+    .prog-delta.down { color:var(--red); }
     .prog-delta.same { color:var(--muted); }
 
     /* ── Progress Chart ── */
@@ -436,9 +441,9 @@
 <div class="screen" id="sWorkout">
   <div class="wk-top">
     <button class="back-btn" onclick="goHome()">← Back</button>
-    <div class="wk-title" id="wkTitle"></div>
+    <h2 class="wk-title" id="wkTitle"></h2>
   </div>
-  <div class="wk-sub" id="wkSub"></div>
+  <p class="wk-sub" id="wkSub"></p>
   <div class="prog-wrap"><div class="prog-fill" id="progFill"></div></div>
   <div id="exList"></div>
 </div>
@@ -695,6 +700,7 @@ function renderExercises() {
       if (setData.weight !== null) inp.value = setData.weight;
       if (setData.done) inp.disabled = true;
       inp.id = `wi_${ei}_${si}`;
+      inp.setAttribute('aria-label', `Weight for set ${si + 1} of ${ex.name}`);
 
       // lbs label
       const lbl = document.createElement('div');
