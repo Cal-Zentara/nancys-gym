@@ -1,5 +1,38 @@
 # SalviasApp — Nancy's Gym Tracker
 
+## Quick Nav — Read First
+
+| I'm doing... | Read only... |
+|---|---|
+| Continuing work / resuming | `STATUS.md` |
+| Fixing a bug | `STATUS.md` + Data Shape / Screens sections |
+| Adding a feature | `STATUS.md` + Design + Screens |
+| Understanding the whole project | This CLAUDE.md in full |
+
+**Do not explore.** If the answer isn't in the files above, ask before searching.
+
+---
+
+## Dev Reference — Symbol Map / Schema / Gotchas
+
+> **Scaffold only — populate on next touch.** When you next edit this project, fill in real line ranges and schema details. Remove the TODO notes as you go.
+
+### Symbol Map
+
+| Feature | File | Lines |
+|---|---|---|
+| TODO: populate on next touch — one row per major feature with `index.html` line ranges (home screen, workout, rest timer, progress chart, etc.) | | |
+
+### Data Schema
+
+TODO: populate on next touch. Existing doc above already shows the `nancyGym5` localStorage shape — consolidate here so mid-session edits only need to read this section.
+
+### Known Gotchas
+
+TODO: populate on next touch. Candidates from the doc below: `100dvh` iOS fix, `font-size: 16px` weight inputs (iOS zoom prevention), shake animation on empty weight, Chart.js `spanGaps: true` with time-tab grouping.
+
+---
+
 ## What It Is
 
 A single-file PWA workout tracker built for Nancy (also known as Salvia Lion). Push/Pull/Glutes & Legs sessions with per-set weight logging, rest timer, progress chart, and a progress screen. Personal app — no login, no accounts.
